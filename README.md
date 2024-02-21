@@ -1,7 +1,7 @@
 ### BASIC Lexer
 
 **Overview:**
-The BASIC Lexer project is a fundamental tool designed to tokenize BASIC programming language code. It efficiently analyzes BASIC code and breaks it down into individual tokens, which are essential components for further processing by compilers, interpreters, or other software tools. Leveraging Java programming, the project employs lexing techniques to identify and categorize different elements within the code accurately.
+The BASIC Lexer project is a fundamental tool designed to tokenize BASIC programming language code. It efficiently analyzes BASIC code and breaks it down into individual tokens, which are essential components for further processing by compilers, interpreters, or other software tools. Using Java programming, the project employs lexing techniques to identify and categorize different elements within the code accurately for future use.
 
 **Features:**
 1. **Tokenization:** Parses BASIC code into distinct tokens, including keywords, identifiers, numbers, strings, and symbols, facilitating subsequent stages of compilation or interpretation.
