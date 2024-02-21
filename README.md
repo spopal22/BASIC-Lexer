@@ -27,5 +27,3 @@ To utilize the BASIC Lexer project, follow these steps:
 2. Provide the BASIC code file you want to tokenize as a command-line argument.
 3. The lexer will process the code and output a list of tokens, including their types, line numbers, positions, and values (if applicable).
 4. Utilize the tokenized output for subsequent stages of compilation, interpretation, or analysis of the BASIC code.
-
-Ensure that Java is installed on your system to run the BASIC Lexer successfully.
