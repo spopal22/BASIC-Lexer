@@ -11,7 +11,7 @@ The BASIC Lexer project is a fundamental tool designed to tokenize BASIC program
 - **Character Processing:** Efficiently processes individual characters, identifying their roles in forming tokens, whether as part of identifiers, numbers, or symbols.
 - **String Literal Handling:** Handles string literals, including escape characters, ensuring accurate tokenization of strings within the BASIC code.
 - **Position Tracking:** Tracks the position of tokens within the code, providing useful information for debugging or error reporting purposes.
-- **Abstract Syntax Tree:** Parser is implemented to convert the stream of tokens into AST nodes. This allows for ease of parsing and a more structured representation.
+- **Parser:** Parser is implemented to convert the stream of tokens into AST nodes. This allows for ease of parsing, a more structured representation, and more optimization and efficient code.
 
 ## Key Data Structures
 
