@@ -2,8 +2,8 @@ import java.util.HashMap;
 import java.util.LinkedList;
 
 public class Lexer {
-    private int lineNumber;
-    private int pos;
+    int lineNumber;
+    int pos;
     private final CodeHandler codeHandler; //Tracks line number and position. Also references CodeHandler
     private final HashMap<String, Token.TokenType> tokenMap;
     private HashMap<String, Token.TokenType> oneChar;
@@ -52,6 +52,7 @@ public class Lexer {
         oneChar.put("/", Token.TokenType.DIVIDE);
         oneChar.put(",", Token.TokenType.COMMA);
         oneChar.put(".", Token.TokenType.PERIOD);
+        oneChar.put(":", Token.TokenType.COLON);
     }  //Adds all the keywords to their corresponding token type
     private void twoChar() {
         twoChar.put("<=", Token.TokenType.LESSEROR);
@@ -81,8 +82,25 @@ public class Lexer {
                     lineNumber++;
                     codeHandler.swallow(1); //IF end of line character is detected, creates appropriate token, and updates the position and line number
                 } else if (Character.isLetter(currentChar) || currentChar == '_' || currentChar == '$' || currentChar == '%') {
-                    Token wordToken = processWord();
-                    tokens.add(wordToken); //If there are any letters or underscores, adds it as a word token
+                    StringBuilder wordBuilder = new StringBuilder();
+                    while (Character.isLetterOrDigit(codeHandler.peek(0)) || codeHandler.peek(0) == '_' || codeHandler.peek(0) == '$' || codeHandler.peek(0) == '%') {
+                        wordBuilder.append(codeHandler.getChar());
+                        pos++;
+                    }
+                    String word = wordBuilder.toString().toLowerCase();
+
+                    if (codeHandler.peek(0) == ':') {
+                        tokens.add(new Token(Token.TokenType.LABEL, lineNumber, pos, word));
+                        tokens.add(new Token(Token.TokenType.COLON, lineNumber, pos + 1, ":"));
+                        codeHandler.swallow(1);
+                    } else {
+                        Token.TokenType tokenType = tokenMap.getOrDefault(word.toLowerCase(), Token.TokenType.WORD);
+                        if (tokenType != Token.TokenType.WORD) {
+                            tokens.add(new Token(tokenType, lineNumber, pos, null));
+                        } else {
+                            tokens.add(new Token(Token.TokenType.WORD, lineNumber, pos, word));
+                        }
+                    }
                 } else if (Character.isDigit(currentChar)) {
                     Token digitToken = processNumber();
                     tokens.add(digitToken); //If there are any digits it adds it as a number token

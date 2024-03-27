@@ -17,6 +17,8 @@ public class Basic {
 
             Lexer lexer = new Lexer(new CodeHandler(fileName)); //Creates lexer with CodeHandler for the file
             LinkedList<Token> tokens = lexer.lex(); //Does the lex and returns a list of tokens
+            Parser parser = new Parser(tokens);
+            Node rootNode = parser.parse();
 
             for (Token token : tokens) { //Prints out each token in the form of a list
                 System.out.println(token.toString());
